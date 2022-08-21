@@ -2,26 +2,26 @@ module top(CLOCK_50, TRIG, ECHO, LED);
 
 	input 		 CLOCK_50;
 	output 		 TRIG;
-	input			 ECHO;  // /!\  Alim. du capteur 5V, abaisser le signal ECHO à 3v3 (diviseur tension)
-	output [7:0] LED;
+	input		 ECHO;  // /!\  Alim. du capteur 5V, abaisser le signal ECHO à 3v3 (diviseur tension)
+	output [7:0] 	 LED;
 	
 	wire start, new_measure, timeout;
 	wire [20:0] distance_raw;
 
 	reg [24:0] counter_ping;
 	
-	localparam CLK_MHZ = 50;			// horloge 50MHz
+	localparam CLK_MHZ = 50;	 // horloge 50MHz
 	localparam PERIOD_PING_MS = 60;  // période des ping en ms
 	
 	localparam COUNTER_MAX_PING = CLK_MHZ * PERIOD_PING_MS * 1000;
 
-	//	avec horloge 50MHz et c=345m/s, distance_raw = 2900 * D(cm)
+	// avec horloge 50MHz et c=345m/s, distance_raw = 2900 * D(cm)
 	localparam D = 2900;
 
 
 	ultrasonic #(	.CLK_MHZ(50), 
-						.TRIGGER_PULSE_US(12), 
-						.TIMEOUT_MS(3)
+			.TRIGGER_PULSE_US(12), 
+			.TIMEOUT_MS(3)
 					) U1
 						(	.clk(CLOCK_50),
 							.trigger(TRIG),
