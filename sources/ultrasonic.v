@@ -1,12 +1,12 @@
 /*
-	* Un simple contrôleur pour les capteurs à ultrason
+	* Un simple contrôleur pour les capteurs à ultrasons
 	  du type SRF05 ou HC-SR04
 	  
 	* Trigger et Echo séparés
 	
    /-----------------------------\
    |      ultrasonic sensor      |
-	|         controller          |
+   |         controller          |
    |                             |	
    |                      trigger -->
    |                             |
@@ -45,21 +45,21 @@ module ultrasonic(clk, start, trigger, echo, distance_raw, new_measure, timeout)
 	output trigger, new_measure, timeout;
 	output reg [20:0] distance_raw;
 
-	parameter 	CLK_MHZ = 50,					// fréquence horloge en MHz
-					TRIGGER_PULSE_US = 12,  	// durée impulsion trigger en microsecondes
-					TIMEOUT_MS = 25;				// timeout en millisecondes
+	parameter 	CLK_MHZ = 50,			// fréquence horloge en MHz
+			TRIGGER_PULSE_US = 12,  	// durée impulsion trigger en microsecondes
+			TIMEOUT_MS = 25;		// timeout en millisecondes
 	
 	localparam	COUNT_TRIGGER_PULSE = CLK_MHZ * TRIGGER_PULSE_US;
-	localparam  COUNT_TIMEOUT = CLK_MHZ * TIMEOUT_MS * 1000;
+	localparam  	COUNT_TIMEOUT = CLK_MHZ * TIMEOUT_MS * 1000;
 
 	reg [20:0] counter;
 	
 	reg[2:0]  state, state_next;
-	localparam 	IDLE 				= 0,
-					TRIG 				= 1,
-					WAIT_ECHO_UP 	= 2,
-					MEASUREMENT 	= 3,
-					MEASURE_OK 		= 4;
+	localparam 	IDLE 		= 0,
+			TRIG 		= 1,
+			WAIT_ECHO_UP 	= 2,
+			MEASUREMENT 	= 3,
+			MEASURE_OK 	= 4;
 	
 	always @(posedge clk) state <= state_next;
 	
