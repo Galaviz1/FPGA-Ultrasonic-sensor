@@ -8,8 +8,7 @@ FPGA Ultrasonic sensor controller (SRF05 / HC-SR04)
 - carte de développement Terasic Altera DE0-nano
 - télémètre ultrason [SRF05](http://www.robot-electronics.co.uk/htm/srf05tech.htm)
 
-- Projet développé avec Intel Quartus Prime (lite)
-- Fichier archive du projet à importer dans Quartus Prime : *ultrasonic.qar*
+- Projet développé avec Intel Quartus Prime (lite). Fichier archive du projet à importer dans Quartus Prime : *ultrasonic.qar*
 
 ## Description
 
@@ -25,4 +24,6 @@ FPGA Ultrasonic sensor controller (SRF05 / HC-SR04)
 
 - duree du signal echo en microsecondes = distance_raw / CLK_MHZ
 
-Le capteur SRF05 a un timeout de 30 ms si aucun obtacle n'est rencontré. On peut simuler un timeout inférieur avec le paramètre TIMEOUT_MS. Si le signal Echo n'est pas redescendu après ce TIME_OUT, le contrôleur bloque distance_raw, délivre une impulsion sur la sorte new_measure et sur la sortie timeout.  	
+Le capteur SRF05 a un timeout de 30 ms si aucun obtacle n'est rencontré. On peut simuler un timeout inférieur avec le paramètre TIMEOUT_MS. Si le signal Echo n'est pas redescendu après ce TIME_OUT, le contrôleur bloque distance_raw, délivre une impulsion sur la sorte new_measure et sur la sortie timeout.
+
+![simul-ultrasonic](images/simul-ultrasonic.png)
